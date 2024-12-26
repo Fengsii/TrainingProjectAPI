@@ -226,3 +226,4 @@ C:\Users\DELL 7390\Documents\CSharp Lanjutan\PelatihanKe2\obj\Debug\net8.0\refin
 C:\Users\DELL 7390\Documents\CSharp Lanjutan\PelatihanKe2\obj\Debug\net8.0\PelatihanKe2.pdb
 C:\Users\DELL 7390\Documents\CSharp Lanjutan\PelatihanKe2\obj\Debug\net8.0\PelatihanKe2.genruntimeconfig.cache
 C:\Users\DELL 7390\Documents\CSharp Lanjutan\PelatihanKe2\obj\Debug\net8.0\ref\PelatihanKe2.dll
+C:\Users\DELL 7390\Documents\CSharp Lanjutan\PelatihanKe2\obj\Debug\net8.0\PelatihanKe2.sourcelink.json
