@@ -11,5 +11,7 @@ namespace PelatihanKe2.Model
         }
 
         public virtual DbSet<Customer> Customers { get; set; }
+
+        public virtual DbSet<Item> Items { get; set; }
     }
 }
