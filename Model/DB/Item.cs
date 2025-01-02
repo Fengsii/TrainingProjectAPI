@@ -7,7 +7,8 @@ namespace PelatihanKe2.Model.DB
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Nama Item wajib diisi")]
-        [StringLength(100, ErrorMessage = "Nama Item tidak boleh lebih dari 100 karakter")]
+        [MaxLength(18, ErrorMessage = "Maximal 18 Karakter")]
+        [MinLength(6, ErrorMessage = "Minimal Inputan 6 Karakter")]
         public string NamaItem { get; set; }
 
         [Required(ErrorMessage = "Quantity wajib diisi")]
@@ -18,10 +19,12 @@ namespace PelatihanKe2.Model.DB
         public DateTime TglExpire { get; set; }
 
         [Required(ErrorMessage = "Supplier wajib diisi")]
-        [StringLength(100, ErrorMessage = "Supplier tidak boleh lebih dari 100 karakter")]
+        [MaxLength(20, ErrorMessage = "Maximal 20 Karakter")]
+        [MinLength(5, ErrorMessage = "Minimal Inputan 5 Karakter")]
         public string Supplier { get; set; }
 
-        [StringLength(100, ErrorMessage = "Alamat Supplier tidak boleh lebih dari 100 karakter")]
+        [MaxLength(25, ErrorMessage = "Maximal 25 Karakter")]
+        [MinLength(8, ErrorMessage = "Minimal Inputan 8 Karakter")]
         public string? AlamatSupplier { get; set; }
     }
 }

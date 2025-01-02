@@ -327,8 +327,8 @@
             "format": "int32"
           },
           "namaItem": {
-            "maxLength": 100,
-            "minLength": 0,
+            "maxLength": 18,
+            "minLength": 6,
             "type": "string"
           },
           "qty": {
