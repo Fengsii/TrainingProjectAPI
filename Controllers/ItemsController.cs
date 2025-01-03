@@ -44,13 +44,20 @@ namespace PelatihanKe2.Controllers
         [HttpPost]
         public IActionResult Post(Item item)
         {
-            var itemt = _itemService.CreateItems(item);
-            if(itemt)
+            try
             {
-                return Ok("Insert Customer Success");
-            }
+                var dataItem = _itemService.CreateItems(item);
+                if (dataItem)
+                {
+                    return Ok("Insert Item Success");
+                }
 
-            return BadRequest("Insert Customer Failed");
+                return BadRequest("Insert Item Failed");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
 
         }
 

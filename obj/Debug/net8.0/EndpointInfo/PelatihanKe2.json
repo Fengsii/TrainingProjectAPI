@@ -327,8 +327,9 @@
             "format": "int32"
           },
           "namaItem": {
-            "maxLength": 18,
-            "minLength": 6,
+            "maxLength": 15,
+            "minLength": 5,
+            "pattern": "^(?! )[A-Za-z]+(?: [A-Za-z]+){0,3}(?<! )$",
             "type": "string"
           },
           "qty": {
@@ -342,13 +343,13 @@
             "format": "date-time"
           },
           "supplier": {
-            "maxLength": 100,
-            "minLength": 0,
+            "maxLength": 20,
+            "minLength": 5,
+            "pattern": "^(?! )[A-Za-z]+(?: [A-Za-z]+){0,3}(?<! )$",
             "type": "string"
           },
           "alamatSupplier": {
-            "maxLength": 100,
-            "minLength": 0,
+            "pattern": "^Jl\\.\\s[A-Za-z\\s]+No\\.\\s\\d+,\\sRT\\s\\d+/RW\\s\\d+,\\sKelurahan\\s[A-Za-z\\s]+,\\sKecamatan\\s[A-Za-z\\s]+,\\s[A-Za-z\\s]+,\\s[A-Za-z\\s]+,\\s\\d{5}$",
             "type": "string",
             "nullable": true
           }

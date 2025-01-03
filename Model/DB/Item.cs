@@ -7,8 +7,9 @@ namespace PelatihanKe2.Model.DB
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Nama Item wajib diisi")]
-        [MaxLength(18, ErrorMessage = "Maximal 18 Karakter")]
-        [MinLength(6, ErrorMessage = "Minimal Inputan 6 Karakter")]
+        [RegularExpression(@"^(?! )[A-Za-z]+(?: [A-Za-z]+){0,3}(?<! )$",
+            ErrorMessage = "Nama hanya boleh huruf, tidak boleh ada spasi di awal/akhir, tidak boleh spasi berturut-turut, dan maksimal 3 spasi")]
+        [StringLength(15, MinimumLength = 5, ErrorMessage = "Panjang supplier harus 5-15 karakter")]
         public string NamaItem { get; set; }
 
         [Required(ErrorMessage = "Quantity wajib diisi")]
@@ -19,12 +20,14 @@ namespace PelatihanKe2.Model.DB
         public DateTime TglExpire { get; set; }
 
         [Required(ErrorMessage = "Supplier wajib diisi")]
-        [MaxLength(20, ErrorMessage = "Maximal 20 Karakter")]
-        [MinLength(5, ErrorMessage = "Minimal Inputan 5 Karakter")]
+        [RegularExpression(@"^(?! )[A-Za-z]+(?: [A-Za-z]+){0,3}(?<! )$",
+            ErrorMessage = "Supplier hanya boleh huruf, tidak boleh ada spasi di awal/akhir, tidak boleh spasi berturut-turut, dan maksimal 3 spasi")]
+        [StringLength(20, MinimumLength = 5, ErrorMessage = "Panjang supplier harus 5-20 karakter")]
         public string Supplier { get; set; }
 
-        [MaxLength(25, ErrorMessage = "Maximal 25 Karakter")]
-        [MinLength(8, ErrorMessage = "Minimal Inputan 8 Karakter")]
+        
+        [RegularExpression(@"^Jl\.\s[A-Za-z\s]+No\.\s\d+,\sRT\s\d+/RW\s\d+,\sKelurahan\s[A-Za-z\s]+,\sKecamatan\s[A-Za-z\s]+,\s[A-Za-z\s]+,\s[A-Za-z\s]+,\s\d{5}$",
+            ErrorMessage = "Format alamat tidak sesuai. Contoh: Jl. Sudirman No. 45, RT 03/RW 05, Kelurahan Menteng, Kecamatan Menteng, Jakarta Pusat, DKI Jakarta, 10310")]
         public string? AlamatSupplier { get; set; }
     }
 }

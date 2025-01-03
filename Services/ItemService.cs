@@ -1,5 +1,6 @@
 ﻿using PelatihanKe2.Model.DB;
 using PelatihanKe2.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace PelatihanKe2.Services
 {
@@ -25,17 +26,22 @@ namespace PelatihanKe2.Services
 
         public bool CreateItems(Item item)
         {
-            try
-            {
+           try
+           {
+                if (item.TglExpire <= DateTime.Today || item.TglExpire > DateTime.Today.AddDays(2))
+                {
+                    throw new Exception("Tanggal expire harus 1-2 hari ke depan");
+                }
+
                 _conteks.Items.Add(item);
                 _conteks.SaveChanges();
-
                 return true;
-            }
-            catch (Exception)
-            { 
+           }
+           catch (Exception)
+           {
                 return false;
-            }
+           }
+           
         }
 
         public bool UpdateItems(Item item)
@@ -43,6 +49,12 @@ namespace PelatihanKe2.Services
             try
             {
                 var ItemOld = _conteks.Items.Where(x => x.Id == item.Id).FirstOrDefault();
+
+                if (item.TglExpire <= DateTime.Today || item.TglExpire > DateTime.Today.AddDays(2))
+                {
+                    throw new Exception("Tanggal expire harus 1-2 hari ke depan");
+                }
+
                 if (ItemOld != null)
                 {
                     ItemOld.NamaItem = item.NamaItem;
@@ -60,7 +72,7 @@ namespace PelatihanKe2.Services
             }
             catch
             {
-                throw;
+                throw new Exception("Item tidak ditemukan");
             }
         }
 
@@ -81,7 +93,7 @@ namespace PelatihanKe2.Services
             }
             catch (Exception)
             {
-                throw;
+                throw new Exception("Item tidak ditemukan");
             }
 
         }
