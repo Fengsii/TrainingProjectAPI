@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PelatihanKe2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1230c22e861ac520ebd900e1226fdba73cac76c9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b9b61c5a50b7601bca4aa6c414cbceadd487629a")]
 [assembly: System.Reflection.AssemblyProductAttribute("PelatihanKe2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PelatihanKe2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

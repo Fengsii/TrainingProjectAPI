@@ -41,25 +41,45 @@ namespace PelatihanKe2.Controllers
         }
 
         // POST api/<ItemsController>
+        //[HttpPost]
+        //public IActionResult Post(Item item)
+        //{
+        //    try
+        //    {
+        //        var dataItem = _itemService.CreateItems(item);
+        //        if (dataItem)
+        //        {
+        //            return Ok("Insert Item Success");
+        //        }
+
+        //        return BadRequest("Insert Item Failed");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest($"Error: {ex.Message}");
+        //    }
+
+        //}
+
         [HttpPost]
         public IActionResult Post(Item item)
         {
             try
             {
-                var dataItem = _itemService.CreateItems(item);
-                if (dataItem)
+                var result = _itemService.CreateItems(item);
+                if (result.IsSuccess)
                 {
-                    return Ok("Insert Item Success");
+                    return Ok(result.Message);
                 }
 
-                return BadRequest("Insert Item Failed");
+                return BadRequest(result.Message);
             }
             catch (Exception ex)
             {
                 return BadRequest($"Error: {ex.Message}");
             }
-
         }
+
 
         // PUT api/<ItemsController>/5
         [HttpPut("{id}")]

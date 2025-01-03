@@ -24,25 +24,45 @@ namespace PelatihanKe2.Services
             return _conteks.Items.FirstOrDefault(x => x.Id == id);
         }
 
-        public bool CreateItems(Item item)
+        //public bool CreateItems(Item item)
+        //{
+        //   try
+        //   {
+        //        if (item.TglExpire <= DateTime.Today || item.TglExpire > DateTime.Today.AddDays(2))
+        //        {
+        //            throw new Exception("Tanggal expire harus 1-2 hari ke depan");
+        //        }
+
+        //        _conteks.Items.Add(item);
+        //        _conteks.SaveChanges();
+        //        return true;
+        //   }
+        //   catch (Exception)
+        //   {
+        //        return false;
+        //   }
+
+        //}
+
+        public (bool IsSuccess, string Message) CreateItems(Item item)
         {
-           try
-           {
+            try
+            {
                 if (item.TglExpire <= DateTime.Today || item.TglExpire > DateTime.Today.AddDays(2))
                 {
-                    throw new Exception("Tanggal expire harus 1-2 hari ke depan");
+                    return (false, "Tanggal expire harus 1-2 hari ke depan");
                 }
 
                 _conteks.Items.Add(item);
                 _conteks.SaveChanges();
-                return true;
-           }
-           catch (Exception)
-           {
-                return false;
-           }
-           
+                return (true, "Item berhasil ditambahkan");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Error: {ex.Message}");
+            }
         }
+
 
         public bool UpdateItems(Item item)
         {

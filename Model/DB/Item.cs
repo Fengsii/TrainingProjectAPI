@@ -24,9 +24,8 @@ namespace PelatihanKe2.Model.DB
             ErrorMessage = "Supplier hanya boleh huruf, tidak boleh ada spasi di awal/akhir, tidak boleh spasi berturut-turut, dan maksimal 3 spasi")]
         [StringLength(20, MinimumLength = 5, ErrorMessage = "Panjang supplier harus 5-20 karakter")]
         public string Supplier { get; set; }
-
-        
-        [RegularExpression(@"^Jl\.\s[A-Za-z\s]+No\.\s\d+,\sRT\s\d+/RW\s\d+,\sKelurahan\s[A-Za-z\s]+,\sKecamatan\s[A-Za-z\s]+,\s[A-Za-z\s]+,\s[A-Za-z\s]+,\s\d{5}$",
+ 
+        [RegularExpression(@"^$|^Jl\.\s[A-Za-z]+(?:\s[A-Za-z]+)*\sNo\.\s\d+,\sRT\s\d+/RW\s\d+,\sKelurahan\s[A-Za-z]+(?:\s[A-Za-z]+)*,\sKecamatan\s[A-Za-z]+(?:\s[A-Za-z]+)*,\s[A-Za-z]+(?:\s[A-Za-z]+)*,\s[A-Za-z]+(?:\s[A-Za-z]+)*,\s\d{5}$",
             ErrorMessage = "Format alamat tidak sesuai. Contoh: Jl. Sudirman No. 45, RT 03/RW 05, Kelurahan Menteng, Kecamatan Menteng, Jakarta Pusat, DKI Jakarta, 10310")]
         public string? AlamatSupplier { get; set; }
     }
