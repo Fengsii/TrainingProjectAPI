@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PelatihanKe2.Model;
 using PelatihanKe2.Model.DB;
 using PelatihanKe2.Services;
 
@@ -20,8 +21,28 @@ namespace PelatihanKe2.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var customerList = _customerService.GetlistCustomer();
-            return Ok(customerList);
+            try
+            {
+                var customerList = _customerService.GetlistCustomer();
+                var response = new GeneralResponse
+                {
+                    StatusCode = "01",
+                    Statusdesc = "Sukses",
+                    Data = customerList
+                };
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                var customerList = _customerService.GetlistCustomer();
+                var response = new GeneralResponse
+                {
+                    StatusCode = "99",
+                    Statusdesc = "Failed | " + ex.Message.ToString(),
+                    Data = null
+                };
+                return BadRequest(response);
+            }
         }
 
         // GET api/<CustomerController>/5
@@ -40,12 +61,42 @@ namespace PelatihanKe2.Controllers
         [HttpPost]
         public IActionResult Post(Customer customer)
         {
-            var InsertCustomer = _customerService.CreateCustomer(customer);
-            if(InsertCustomer)
+           try
+           {
+                var InsertCustomer = _customerService.CreateCustomer(customer);
+                if (InsertCustomer)
+                {
+                    var responseSuccess = new GeneralResponse
+                    {
+                        StatusCode = "01",
+                        Statusdesc = "Insert Customer Success",
+                        Data = null
+                    };
+
+                    return Ok(responseSuccess);  
+                }
+
+                var responseFailed = new GeneralResponse
+                {
+                    StatusCode = "02",
+                    Statusdesc = "Insert Customer Failed",
+                    Data = null
+                };
+
+                return BadRequest(responseFailed);
+           }
+           catch (Exception ex)
             {
-                return Ok("Insert Customer Success");
+                var responseFailed = new GeneralResponse
+                {
+                    StatusCode = "99",
+                    Statusdesc = "Failed | " + ex.Message.ToString(),
+                    Data = null
+                };
+
+                return BadRequest(responseFailed);
             }
-            return BadRequest("Insert Customer Failed");
+
         }
 
         // PUT api/<CustomerController>/5
@@ -57,14 +108,37 @@ namespace PelatihanKe2.Controllers
                 var dataUpdate = _customerService.UpdateCustomer(customer);
                 if(dataUpdate)
                 {
-                    return Ok("Data Berhasil Diupdate");
+                    var responseSuccess = new GeneralResponse
+                    {
+                        StatusCode = "01",
+                        Statusdesc = "Update Customer Success",
+                        Data = null
+                    };
+
+                    return Ok(responseSuccess);
+                    //return Ok("Data Berhasil Diupdate");
                 }
-                return BadRequest("Update data gagal");
+
+                var responseFailed = new GeneralResponse
+                {
+                    StatusCode = "02",
+                    Statusdesc = "Update Customer Failed",
+                    Data = null
+                };
+
+                return BadRequest(responseFailed);
+
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message.ToString());
-                throw;
+                var responseFailed = new GeneralResponse
+                {
+                    StatusCode = "99",
+                    Statusdesc = "Failed | " + ex.Message.ToString(),
+                    Data = null
+                };
+
+                return BadRequest(responseFailed);
             }
         }
 
@@ -77,15 +151,36 @@ namespace PelatihanKe2.Controllers
                 var data = _customerService.DeleteCustomer(id);
                 if (data)
                 {
-                    return Ok("Data Berhasil Dihapus");
+                    var responseSuccess = new GeneralResponse
+                    {
+                        StatusCode = "01",
+                        Statusdesc = "Delete Customer Success",
+                        Data = null
+                    };
+
+                    return Ok(responseSuccess);
+                    //return Ok("Data Berhasil Dihapus");
                 }
 
-                return NotFound("Data Tidak Ditemukan");
+                var responseFailed = new GeneralResponse
+                {
+                    StatusCode = "02",
+                    Statusdesc = "Delete Customer Failed",
+                    Data = null
+                };
+
+                return BadRequest(responseFailed);
             }
             catch (Exception ex)
             {
-                //return BadRequest(ex.Message.ToString());
-                return BadRequest($"Terjadi Kesalahan : {ex.Message}");
+                var responseFailed = new GeneralResponse
+                {
+                    StatusCode = "99",
+                    Statusdesc = "Failed | " + ex.Message.ToString(),
+                    Data = null
+                };
+
+                return BadRequest(responseFailed);
             }
         }
     }
