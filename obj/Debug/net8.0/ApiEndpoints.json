@@ -11,15 +11,47 @@
   },
   {
     "ContainingType": "PelatihanKe2.Controllers.CustomerController",
+    "Method": "Delete",
+    "RelativePath": "api/Customer/DeleteCustomerById",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PelatihanKe2.Controllers.CustomerController",
+    "Method": "GetCustomerById",
+    "RelativePath": "api/Customer/GetCustomerById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PelatihanKe2.Controllers.CustomerController",
     "Method": "Post",
-    "RelativePath": "api/Customer",
+    "RelativePath": "api/Customer/InserDataCustomer",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "customer",
-        "Type": "PelatihanKe2.Model.DB.Customer",
+        "Type": "PelatihanKe2.Model.DTO.CustomerRequestDTO",
         "IsRequired": true
       }
     ],
@@ -28,46 +60,19 @@
   {
     "ContainingType": "PelatihanKe2.Controllers.CustomerController",
     "Method": "Put",
-    "RelativePath": "api/Customer",
+    "RelativePath": "api/Customer/UpdateDataCustomer",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
         "Name": "customer",
-        "Type": "PelatihanKe2.Model.DB.Customer",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PelatihanKe2.Controllers.CustomerController",
-    "Method": "GetCustomerById",
-    "RelativePath": "api/Customer/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PelatihanKe2.Controllers.CustomerController",
-    "Method": "Delete",
-    "RelativePath": "api/Customer/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Type": "PelatihanKe2.Model.DTO.CustomerRequestDTO",
         "IsRequired": true
       }
     ],

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PelatihanKe2.Model;
 using PelatihanKe2.Model.DB;
+using PelatihanKe2.Model.DTO;
 using PelatihanKe2.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -46,7 +47,8 @@ namespace PelatihanKe2.Controllers
         }
 
         // GET api/<CustomerController>/5
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("GetCustomerById")]
         public IActionResult GetCustomerById(int id)
         {
             var customer = _customerService.GetCustomerById(id);
@@ -58,8 +60,8 @@ namespace PelatihanKe2.Controllers
         }
 
         // POST api/<CustomerController>
-        [HttpPost]
-        public IActionResult Post(Customer customer)
+        [HttpPost("InserDataCustomer")]
+        public IActionResult Post(CustomerRequestDTO customer)
         {
            try
            {
@@ -100,12 +102,12 @@ namespace PelatihanKe2.Controllers
         }
 
         // PUT api/<CustomerController>/5
-        [HttpPut]
-        public IActionResult Put(Customer customer)
+        [HttpPut("UpdateDataCustomer")]
+        public IActionResult Put(int Id, CustomerRequestDTO customer)
         {
             try
             {
-                var dataUpdate = _customerService.UpdateCustomer(customer);
+                var dataUpdate = _customerService.UpdateCustomer(Id, customer);
                 if(dataUpdate)
                 {
                     var responseSuccess = new GeneralResponse
@@ -143,7 +145,8 @@ namespace PelatihanKe2.Controllers
         }
 
         // DELETE api/<CustomerController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete]
+        [Route("DeleteCustomerById")]
         public IActionResult Delete(int id)
         {
             try
