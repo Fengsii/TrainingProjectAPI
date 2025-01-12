@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PelatihanKe2.Model;
 
@@ -11,9 +12,11 @@ using PelatihanKe2.Model;
 namespace PelatihanKe2.Migrations
 {
     [DbContext(typeof(ApplicationConteks))]
-    partial class ApplicationConteksModelSnapshot : ModelSnapshot
+    [Migration("20250112063242_AddCreateAndUpdateDateTime")]
+    partial class AddCreateAndUpdateDateTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
