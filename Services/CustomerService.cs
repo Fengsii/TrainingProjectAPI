@@ -37,9 +37,26 @@ namespace PelatihanKe2.Services
         // Mendapatkan satu data pelanggan berdasarkan ID
         //[Route(GetDataById)]
 
-        public Customer GetCustomerById(int id)
+        public CustomerDTO GetCustomerById(int id)
         {
-            return _conteks.Customers.FirstOrDefault(x => x.Id == id); // Mengembalikan satu pelanggan dengan ID tertentu
+            //return _conteks.Customers.FirstOrDefault(x => x.Id == id); // Mengembalikan satu pelanggan dengan ID tertentu
+            var customer = _conteks.Customers.FirstOrDefault(x => x.Id == id);
+            if (customer == null)
+            {
+                return null;
+            }
+
+            return new CustomerDTO
+            {
+                Id = customer.Id.ToString(),
+                Name = customer.Name,
+                Address = customer.Address,
+                City = customer.City,
+                PhoneNumber = customer.PhoneNumber,
+                CreateDate = customer.CreateDate != null ? customer.CreateDate.Value.ToString("dd/MM/yyy HH:mm:ss") : "",
+                UpdateDate = customer.UpdateDate != null ? customer.UpdateDate.Value.ToString("dd/MM/yyy HH:mm:ss") : ""
+            };
+        
         }
 
         public bool CreateCustomer(CustomerRequestDTO customer)

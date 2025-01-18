@@ -51,12 +51,46 @@ namespace PelatihanKe2.Controllers
         [Route("GetCustomerById")]
         public IActionResult GetCustomerById(int id)
         {
-            var customer = _customerService.GetCustomerById(id);
-            if (customer == null)
+            //var customer = _customerService.GetCustomerById(id);
+            //if (customer == null)
+            //{
+            //    return NotFound(); // Mengembalikan status 404 jika pelanggan tidak ditemukan
+            //}
+            //return Ok(customer); // Mengembalikan data pelanggan
+
+
+            try
             {
-                return NotFound(); // Mengembalikan status 404 jika pelanggan tidak ditemukan
+                var customer = _customerService.GetCustomerById(id);
+                if (customer == null)
+                {
+                    var responseNotFound = new GeneralResponse
+                    {
+                        StatusCode = "02",
+                        Statusdesc = "Customer Not Found",
+                        Data = null
+                    };
+                    return NotFound(responseNotFound);
+                }
+
+                var responseSuccess = new GeneralResponse
+                {
+                    StatusCode = "01",
+                    Statusdesc = "Success",
+                    Data = customer
+                };
+                return Ok(responseSuccess);
             }
-            return Ok(customer); // Mengembalikan data pelanggan
+            catch (Exception ex)
+            {
+                var responseFailed = new GeneralResponse
+                {
+                    StatusCode = "99",
+                    Statusdesc = "Failed | " + ex.Message.ToString(),
+                    Data = null
+                };
+                return BadRequest(responseFailed);
+            }
         }
 
         // POST api/<CustomerController>
