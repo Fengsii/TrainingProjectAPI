@@ -1,8 +1,17 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
+using MySqlConnector;
 using PelatihanKe2.Model;
 using PelatihanKe2.Services;
 
+
+using Microsoft.AspNetCore.Authorization;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+
 
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
 
@@ -18,6 +27,24 @@ builder.Services.AddDbContext<ApplicationConteks>(
 );
 
 builder.Services.AddScoped<CustomerService>();
+
+
+// BARU DITAMBAH
+builder.Services.AddAuthentication("BasicAuthentication")
+    .AddScheme<AuthenticationSchemeOptions, BasicaOutService>("BasicAuthentication", null);
+
+builder.Services.AddAuthorization(options => {
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .AddAuthenticationSchemes("BasicAuthentication")
+        .Build();
+   }
+);
+
+
+
+
+
 
 // Add services to the container.
 
@@ -36,6 +63,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// INI YANG HARUS DITAMBAH
+app.UseAuthentication();
 
 app.UseAuthorization();
 
