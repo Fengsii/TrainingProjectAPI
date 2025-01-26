@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "132dNARVblg=",
+  "dgSpecHash": "SiONpoeb55Y=",
   "success": true,
   "projectFilePath": "C:\\Users\\DELL 7390\\Documents\\CSharp Lanjutan\\PelatihanKe2\\PelatihanKe2.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\DELL 7390\\.nuget\\packages\\fluentvalidation\\12.0.0-preview1\\fluentvalidation.12.0.0-preview1.nupkg.sha512",
     "C:\\Users\\DELL 7390\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\DELL 7390\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\DELL 7390\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.3\\microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",
