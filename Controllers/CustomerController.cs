@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using PelatihanKe2.Model;
 using PelatihanKe2.Model.DB;
 using PelatihanKe2.Model.DTO;
 using PelatihanKe2.Services;
+using PelatihanKe2.Validator;
+using System.Diagnostics.Eventing.Reader;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,6 +16,7 @@ namespace PelatihanKe2.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly CustomerService _customerService;
+        private ValidationResult _validation;
         public CustomerController(CustomerService customerService)
         {
             _customerService = customerService;
@@ -99,27 +103,45 @@ namespace PelatihanKe2.Controllers
         {
            try
            {
-                var InsertCustomer = _customerService.CreateCustomer(customer);
-                if (InsertCustomer)
+                ValidatorRequestCustomer request = new ValidatorRequestCustomer();
+                _validation = request.Validate(customer);
+
+                if (_validation.IsValid)
                 {
-                    var responseSuccess = new GeneralResponse
+                    var InsertCustomer = _customerService.CreateCustomer(customer);
+                    if (InsertCustomer)
                     {
-                        StatusCode = "01",
-                        Statusdesc = "Insert Customer Success",
+                        var responseSuccess = new GeneralResponse
+                        {
+                            StatusCode = "01",
+                            Statusdesc = "Insert Customer Success",
+                            Data = null
+                        };
+
+                        return Ok(responseSuccess);
+                    }
+
+                    var responseFailed = new GeneralResponse
+                    {
+                        StatusCode = "02",
+                        Statusdesc = "Insert Customer Failed",
                         Data = null
                     };
 
-                    return Ok(responseSuccess);  
-                }
 
-                var responseFailed = new GeneralResponse
+                    return BadRequest(responseFailed);
+                }else
                 {
-                    StatusCode = "02",
-                    Statusdesc = "Insert Customer Failed",
-                    Data = null
-                };
+                    var responseFailed = new GeneralResponse
+                    {
+                        StatusCode = "02",
+                        Statusdesc = _validation.ToString(),
+                        Data = null
+                    };
 
-                return BadRequest(responseFailed);
+                    return BadRequest(responseFailed);
+
+                }
            }
            catch (Exception ex)
             {
