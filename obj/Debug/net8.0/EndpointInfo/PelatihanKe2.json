@@ -17,7 +17,7 @@
         }
       }
     },
-    "/api/Customer/GetCustomerById": {
+    "/api/Customer/GetCustomerById/{Id}": {
       "get": {
         "tags": [
           "Customer"
@@ -25,7 +25,8 @@
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -111,7 +112,7 @@
         }
       }
     },
-    "/api/Customer/DeleteCustomerById": {
+    "/api/Customer/DeleteCustomerById/{Id}": {
       "delete": {
         "tags": [
           "Customer"
@@ -119,7 +120,8 @@
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"

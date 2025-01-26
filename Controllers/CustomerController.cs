@@ -48,7 +48,7 @@ namespace PelatihanKe2.Controllers
 
         // GET api/<CustomerController>/5
         [HttpGet]
-        [Route("GetCustomerById")]
+        [Route("GetCustomerById/{Id}")]
         public IActionResult GetCustomerById(int id)
         {
             //var customer = _customerService.GetCustomerById(id);
@@ -180,7 +180,7 @@ namespace PelatihanKe2.Controllers
 
         // DELETE api/<CustomerController>/5
         [HttpDelete]
-        [Route("DeleteCustomerById")]
+        [Route("DeleteCustomerById/{Id}")]
         public IActionResult Delete(int id)
         {
             try

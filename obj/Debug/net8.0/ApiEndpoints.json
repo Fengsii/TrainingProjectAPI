@@ -12,7 +12,7 @@
   {
     "ContainingType": "PelatihanKe2.Controllers.CustomerController",
     "Method": "Delete",
-    "RelativePath": "api/Customer/DeleteCustomerById",
+    "RelativePath": "api/Customer/DeleteCustomerById/{Id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -20,7 +20,7 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -28,7 +28,7 @@
   {
     "ContainingType": "PelatihanKe2.Controllers.CustomerController",
     "Method": "GetCustomerById",
-    "RelativePath": "api/Customer/GetCustomerById",
+    "RelativePath": "api/Customer/GetCustomerById/{Id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -36,7 +36,7 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
